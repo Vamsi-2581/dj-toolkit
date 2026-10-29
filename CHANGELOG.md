@@ -5,6 +5,10 @@ and versions follow [Semantic Versioning](https://semver.org/). Each release's s
 
 ## [Unreleased]
 
+### Fixed
+
+- Spotify's More menu now uses the active theme's opaque surface and readable text in Booth and Daylight.
+
 ## [0.1.1] - 2026-10-29
 
 ### Changed
