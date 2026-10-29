@@ -298,3 +298,20 @@ def test_floating_panels_paint_a_card_with_a_shadow_below_it(app):
         edge = img.pixelColor(img.width() // 2, img.height() - b - 3 + 6)  # just under the card's bottom edge
         assert edge.alpha() > 0  # the soft shadow is painted there, not left empty
     theme.apply(app, "dark", theme.DEFAULT_ACCENT)
+
+
+def test_qmenu_has_an_opaque_theme_surface(app):
+    from PySide6.QtGui import QPalette
+    from PySide6.QtWidgets import QMenu
+
+    for mode in ("dark", "light"):
+        palette = theme.apply(app, mode)
+        menu = QMenu()
+        menu.addAction("Menu item")
+        menu.ensurePolished()
+        surface = menu.palette().color(QPalette.ColorRole.Window)
+        assert surface.alpha() == 255
+        assert surface.name() == palette.panel
+        menu.close()
+
+    theme.apply(app, "dark", theme.DEFAULT_ACCENT)
