@@ -181,6 +181,11 @@ def stylesheet(c: Palette, check_url: str = "") -> str:
 QWidget {{ background: transparent; }}
 QMainWindow, QDialog {{ background: {c.bg}; }}
 QToolTip {{ background: {c.panel}; color: {c.text}; border: 1px solid {c.border_strong}; border-radius: 6px; padding: 5px 8px; }}
+QMenu {{ background: {c.panel}; color: {c.text}; border: 1px solid {c.border_strong}; padding: 4px; }}
+QMenu::item {{ background: transparent; color: {c.text}; padding: 7px 28px 7px 12px; border-radius: {R_CONTROL}px; }}
+QMenu::item:selected {{ background: {c.hover}; color: {c.text}; }}
+QMenu::item:disabled {{ color: {c.muted}; }}
+QMenu::separator {{ height: 1px; background: {c.border}; margin: 4px 8px; }}
 
 /* ---- shell */
 QFrame#sidebar {{ background: {c.sidebar}; border-right: 1px solid {c.border}; }}
