@@ -177,6 +177,14 @@ def main() -> int:
                 save(render(win, 2), site / "screens" / f"{name}-{label}.webp", quality=80)
                 if (name, label) == ("acapella", "booth"):
                     save(social_card(win), site / "og.jpg", quality=86)
+
+        # Menus are separate top-level windows, so capture their own pixels after the sync page is laid out.
+        win.go(1, save=False)
+        win.sync.more_btn.showMenu()
+        settle(app)
+        save(win.sync.more_btn.menu().grab().toImage(), out / f"more-menu-{label}.png")
+        win.sync.more_btn.menu().hide()
+
     win.close()
     return 0
 
